@@ -12,6 +12,8 @@ image = Image.new('1', (128, 64))
 draw = ImageDraw.Draw(image)
 
 def showInfo(number, name, artist, album):
+    disp.fill(0)
+    disp.show()
     fontSize2= 15
     fontSize1= 10
     font1 = ImageFont.truetype("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",fontSize1)
