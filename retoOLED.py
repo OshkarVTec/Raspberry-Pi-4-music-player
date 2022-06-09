@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 from pathlib import Path
 from demo_opts import get_device
+from time import sleep
 i2c = busio.I2C(SCL, SDA)
 disp = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
 disp.fill(0)
@@ -14,6 +15,7 @@ draw = ImageDraw.Draw(image)
 def showInfo(number, name, artist, album):
     disp.fill(0)
     disp.show()
+    draw.rectangle(((0, 00), (128, 64)), fill="black")
     fontSize2= 15
     fontSize1= 10
     font1 = ImageFont.truetype("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",fontSize1)
@@ -30,6 +32,7 @@ def showInfo(number, name, artist, album):
 def showNumber(number):
     disp.fill(0)
     disp.show()
+    draw.rectangle(((0, 00), (128, 64)), fill="black")
     fontSize1= 40
     font1 = ImageFont.truetype("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",fontSize1)
     draw.text((40, 10), str(number), font = font1, fill = 255)
@@ -44,8 +47,7 @@ def randomOled():
     background = Image.new("RGBA", device.size, "white")
     posn = ((device.width - logo.width) // 2, 0)
     background.paste(logo, posn)
-    for i in range(10):
-        device.display(background.convert(device.mode))
+    device.display(background.convert(device.mode))
 
 def continuosOled():
     device = get_device()
@@ -55,8 +57,7 @@ def continuosOled():
     background = Image.new("RGBA", device.size, "white")
     posn = ((device.width - logo.width) // 2, 0)
     background.paste(logo, posn)
-    for i in range(10):
-        device.display(background.convert(device.mode))
+    device.display(background.convert(device.mode))
 
 def playOled():
     device = get_device()
@@ -66,8 +67,7 @@ def playOled():
     background = Image.new("RGBA", device.size, "white")
     posn = ((device.width - logo.width) // 2, 0)
     background.paste(logo, posn)
-    for i in range(10):
-        device.display(background.convert(device.mode))
+    device.display(background.convert(device.mode))
 
 def pauseOled():
     device = get_device()
@@ -77,8 +77,7 @@ def pauseOled():
     background = Image.new("RGBA", device.size, "white")
     posn = ((device.width - logo.width) // 2, 0)
     background.paste(logo, posn)
-    for i in range(10):
-        device.display(background.convert(device.mode))
+    device.display(background.convert(device.mode))
 
 def nextOled():
     device = get_device()
@@ -88,8 +87,7 @@ def nextOled():
     background = Image.new("RGBA", device.size, "white")
     posn = ((device.width - logo.width) // 2, 0)
     background.paste(logo, posn)
-    for i in range(10):
-        device.display(background.convert(device.mode))
+    device.display(background.convert(device.mode))
 
 def previousOled():
     device = get_device()
@@ -99,10 +97,5 @@ def previousOled():
     background = Image.new("RGBA", device.size, "white")
     posn = ((device.width - logo.width) // 2, 0)
     background.paste(logo, posn)
-    for i in range(10):
-        device.display(background.convert(device.mode))
+    device.display(background.convert(device.mode))
 
-randomOled()
-
-showInfo(11,"La Corriente", "Bad Bunny", "Un verano sin ti")
-showNumber(11)
