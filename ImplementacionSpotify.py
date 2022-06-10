@@ -29,7 +29,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.isPaused = False
         self.setupUi(self)
         
-        self.button_FF.clicked.connect(lambda : self.nextPressed())
+        self.button_FF.clicked.connect(lambda : self.nextPressed(False))
         self.button_Play.clicked.connect(lambda :self.playPressed(False))
         self.button_Random.clicked.connect(lambda : self.randomPressed(False))
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(False))
