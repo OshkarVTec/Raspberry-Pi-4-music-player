@@ -1,14 +1,9 @@
-      #  for event in pygame.event.get():
-       #     if event.type == MUSIC_END:
-        #        if(not repeatFlag):
-         #           pygame.mixer.music.play(songs[i])
-          #      else:
-           #         pygame.mixer.music.play(songs[i+1])
 
 
 import os, pygame
 import random
 import Functions
+import createSongs
 #import retoUART
 #import retoOLED
 
@@ -21,42 +16,28 @@ pygame.mixer.init()
 if not pygame.font: print ('Warning, fonts disabled')
 if not pygame.mixer: print ('Warning, sound disabled')
 
-def getSongs():
-    currentPath = os.path.dirname(os.path.abspath(__file__)); # Absolute dir the script is in
-    filepath = "../songs/"; # The path where the pictures are uploaded
-    directory = os.listdir(os.path.join(currentPath, filepath));
-    songs = [ fi for fi in directory if fi.endswith(('.mp3')) ];
-    return songs;
-
-def getImages():
-    currentPath = os.path.dirname(os.path.abspath(__file__)); # Absolute dir the script is in
-    filepath = "../Album_images/"; # The path where the pictures are uploaded
-    directory = os.listdir(os.path.join(currentPath, filepath));
-    songs = [ fi for fi in directory if fi.endswith(('.jpg')) ];
-    return songs;
-
 
 class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        isRepeat = 0 ;
+        self.songs = createSongs.getSongs()
+        self.current = 0
+        self.isPaused = False
         self.setupUi(self)
-
-        self.button_FF.clicked.connect(self.buttonYes)
-        self.button_Play.clicked.connect(self on_click)
-        self.button_Random.clicked.connect(self.buttonNo)
-        self.button_Repeat.clicked.connect(Functions.repeat())
-        self.button_Rewind.clicked.connect(self.buttonNo)
         
 
-def repeat(repeatFlag):
-   repeatFlag = not repeatFlag
-   return repeatFlag
+        self.button_FF.clicked.connect(self.nextPressed(False))
+        self.button_Play.clicked.connect(self.playPressed(False))
+        self.button_Random.clicked.connect(self.randomPressed(False))
+        self.button_Repeat.clicked.connect(self.repeatPressed(False))
+        self.button_Rewind.clicked.connect(self.rewindPressed(False))
 
-def random(randomFlag):
-    randomFlag = not randomFlag
-    return randomFlag
-
+    def nextPressed(self, gui):
+        self.current =+ 1
+        self.playPressed(False)
+        self.button_Play.setChecked(True)
+    def playPressed(self, gui):
+        self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
