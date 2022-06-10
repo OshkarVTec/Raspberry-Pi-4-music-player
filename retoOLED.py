@@ -41,7 +41,7 @@ def showNumber(number):
 
 def randomOled():
     device = get_device()
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pi_logo.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'random_oled.jpeg'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size, "white")
@@ -49,9 +49,9 @@ def randomOled():
     background.paste(logo, posn)
     device.display(background.convert(device.mode))
 
-def continuosOled():
+def repeatOled():
     device = get_device()
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pi_logo.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'repeat_oled.jpeg'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size, "white")
@@ -61,7 +61,7 @@ def continuosOled():
 
 def playOled():
     device = get_device()
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pi_logo.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'play_oled.png'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size, "white")
@@ -71,7 +71,7 @@ def playOled():
 
 def pauseOled():
     device = get_device()
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pi_logo.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pause_oled.png'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size, "white")
@@ -81,7 +81,7 @@ def pauseOled():
 
 def nextOled():
     device = get_device()
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pi_logo.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'next_oled.png'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size, "white")
@@ -91,7 +91,7 @@ def nextOled():
 
 def previousOled():
     device = get_device()
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'pi_logo.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'previous_oled.png'))
     logo = Image.open(img_path).convert("RGBA")
 
     background = Image.new("RGBA", device.size, "white")
@@ -99,3 +99,4 @@ def previousOled():
     background.paste(logo, posn)
     device.display(background.convert(device.mode))
 
+    
