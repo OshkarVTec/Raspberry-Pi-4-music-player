@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>Button_Random_OFF.jpg</file>
+    <file>Button_Pause_OFF.jpg</file>
+    <file>Button_Pause_ON.jpg</file>
+    <file>Button_Random_ON.jpg</file>
+    <file>Button_Repeat_OFF.jpg</file>
+    <file>Button_Repeat_ON.jpg</file>
+    <file>Button_Repeat_OFF.jpg</file>
+    <file>Button_Play_OFF.jpg</file>
+    <file>Button_Play_ON.jpg</file>
+    <file>Button_Rewind_OFF.jpg</file>
+    <file>Button_FF_OFF.jpg</file>
+    <file>Button_FF_ON.jpg</file>
+    <file>Button_Rewind_ON.jpg</file>
+  </qresource>
+</RCC>
