@@ -42,7 +42,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             self.current += 1
         self.button_Play.setChecked(True)
         retoOLED.nextOled()
-        self.playPressed(False)
+        self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
 
     def playPressed(self, gui):
         if self.button_Play.isChecked() == False:
@@ -68,7 +68,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             self.current -= 1
         self.button_Play.setChecked(True)
         retoOLED.nextOled()
-        self.playPressed(False)
+        self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
