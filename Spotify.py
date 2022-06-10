@@ -235,7 +235,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Artista"))
         self.label_4.setText(_translate("MainWindow", "TextLabel"))
         self.label_SoundEnd.setText(_translate("MainWindow", "0:45"))
-import Button_icons_rc
+import Button_icons
 
 
 if __name__ == "__main__":
