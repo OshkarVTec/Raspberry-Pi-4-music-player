@@ -1,10 +1,10 @@
 
-
+import eyed3
 import os, pygame
 import random
 import Functions
 import createSongs
-import retoOLED
+#import retoOLED
 #import retoUART
 #import retoOLED
 
@@ -35,6 +35,12 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(False))
         self.button_Rewind.clicked.connect(lambda : self.rewindPressed(False))
 
+        self.listWidget.clear()
+        for x in range(len(self.songs)):
+            pygame.mixer.music.load(self.songs[x])
+            audiofile = eyed3.load(self.songs[x])
+            item = str(x) + ".-" + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist) 
+            self.listWidget.insertItem(x, item)  
     def nextPressed(self, gui):
         if self.random == True:
             self.current = random.randint(0,99)
