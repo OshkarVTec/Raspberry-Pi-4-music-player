@@ -1,4 +1,5 @@
-
+#Diego García, Oskar Villa
+#June 2022
 import eyed3
 import os, pygame
 import random
@@ -27,8 +28,11 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.random = False
         self.repeat = False
         self.isPaused = False
+        self.timer = QtCore.QTimer(self)
+        self.timer.start(100)
         self.setupUi(self)
         
+        self.timer.timeout.connect(lambda: self.checkMixerStatus())
         self.button_FF.clicked.connect(lambda : self.nextPressed(False))
         self.button_Play.clicked.connect(lambda :self.playPressed(False))
         self.button_Random.clicked.connect(lambda : self.randomPressed(False))
@@ -41,6 +45,10 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             audiofile = eyed3.load(self.songs[x])
             item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist) 
             self.listWidget.insertItem(x, item)  
+
+    def checkMixerStatus(self):
+        if Functions.checkMusicEnd():
+            self.nextPressed()
 
     def nextPressed(self, gui):
         if self.random == True:
