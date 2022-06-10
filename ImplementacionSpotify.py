@@ -39,7 +39,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         for x in range(len(self.songs)):
             pygame.mixer.music.load(self.songs[x])
             audiofile = eyed3.load(self.songs[x])
-            item = str(x) + ".-" + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist) 
+            item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist) 
             self.listWidget.insertItem(x, item)  
     def nextPressed(self, gui):
         if self.random == True:
