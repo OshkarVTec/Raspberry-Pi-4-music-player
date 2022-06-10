@@ -4,6 +4,7 @@ import os, pygame
 import random
 import Functions
 import createSongs
+import retoOLED
 #import retoUART
 #import retoOLED
 
@@ -22,10 +23,12 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.songs = createSongs.getSongs()
         self.current = 0
+        #Flags 
+        self.random = False
+        self.repeat = False
         self.isPaused = False
         self.setupUi(self)
         
-
         self.button_FF.clicked.connect(self.nextPressed(False))
         self.button_Play.clicked.connect(self.playPressed(False))
         self.button_Random.clicked.connect(self.randomPressed(False))
@@ -33,12 +36,31 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Rewind.clicked.connect(self.rewindPressed(False))
 
     def nextPressed(self, gui):
-        self.current =+ 1
-        self.playPressed(False)
+        if self.random == True:
+            self.current = random.randint(0,99)
+        else: 
+            self.current =+ 1
         self.button_Play.setChecked(True)
-    def playPressed(self, gui):
-        self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
+        retoOLED.nextOled()
+        self.playPressed(False)
 
+    def playPressed(self, gui):
+        if self.button_Play.isClicked() == False:
+            retoOLED.playOled()
+            self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
+        else:
+            retoOLED.pauseOled()
+            self.isPaused = Functions.pause(self.songs[self.current], self.isPaused)
+        
+    def randomPressed(self, gui):
+        retoOLED.randomOled()
+        self.random = not self.random
+        self.current = random.randint(0,99)
+
+    def repeatPressed(self, gui):
+        retoOLED.repeatOled()
+        self.repeat = not self.repeat
+        
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     window = Ui_Dialog()
