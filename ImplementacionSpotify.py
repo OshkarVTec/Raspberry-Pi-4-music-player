@@ -22,7 +22,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.songs = createSongs.getSongs()
-        self.current = 0
+        self.currentSong = 0
         #Flags 
         self.random = False
         self.repeat = False
@@ -41,19 +41,23 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             audiofile = eyed3.load(self.songs[x])
             item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist) 
             self.listWidget.insertItem(x, item)  
+
     def nextPressed(self, gui):
         if self.random == True:
-            self.current = random.randint(0,99)
+            self.currentSong = random.randint(0,99)
         else: 
-            self.current += 1
+            self.currentSong += 1
+            if self.currentSong >= len(self.songs):
+                self.currentSong = 0
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
-        self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
+        self.isPaused = False
+        self.isPaused = Functions.play(self.songs[self.currentSong], self.isPaused)
 
     def playPressed(self, gui):
-        if self.button_Play.isChecked() == False:
+        if self.button_Play.isChecked() == True:
             #retoOLED.playOled()
-            self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
+            self.isPaused = Functions.play(self.songs[self.currentSong], self.isPaused)
         else:
             #retoOLED.pauseOled()
             self.isPaused = Functions.pause(self.isPaused)
@@ -61,7 +65,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def randomPressed(self, gui):
         #retoOLED.randomOled()
         self.random = not self.random
-        self.current = random.randint(0,99)
+        self.currentSong = random.randint(0,99)
 
     def repeatPressed(self, gui):
         #retoOLED.repeatOled()
@@ -69,12 +73,14 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         
     def rewindPressed(self, gui):
         if self.random == True:
-            self.current = random.randint(0,99)
+            self.currentSong = random.randint(0,99)
         else: 
-            self.current -= 1
+            self.currentSong -= 1
+            if self.currentSong <= 0:
+                self.currentSong = len(self.songs) - 1
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
-        self.isPaused = Functions.play(self.songs[self.current], self.isPaused)
+        self.isPaused = Functions.play(self.songs[self.currentSong], self.isPaused)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

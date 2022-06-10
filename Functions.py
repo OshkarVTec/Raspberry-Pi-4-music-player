@@ -11,7 +11,8 @@ if not pygame.mixer: print ('Warning, sound disabled')
 
 def play(songPath, isPaused):
    if (isPaused):
-      pygame.mixer.unpause()
+
+      pygame.mixer.music.unpause()
    else:
       pygame.mixer.music.load(songPath)
       pygame.mixer.music.play()
