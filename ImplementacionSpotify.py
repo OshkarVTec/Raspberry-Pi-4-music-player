@@ -1,7 +1,6 @@
 #Diego García, Oskar Villa
 #June 2022
 import eyed3
-import os, pygame
 import random
 import Functions
 import createSongs
@@ -35,7 +34,6 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
 
         self.listWidget.clear()
         for x in range(len(self.songs)):
-            pygame.mixer.music.load(self.songs[x])
             audiofile = eyed3.load(self.songs[x])
             item = "{:02d}".format(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
             self.listWidget.insertItem(x, item)  
