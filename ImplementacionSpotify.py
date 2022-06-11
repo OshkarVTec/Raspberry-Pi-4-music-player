@@ -20,8 +20,6 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.images = createSongs.getImages()
         self.currentSong = 0
         #Flags 
-        self.random = False
-        self.repeat = False
         self.isPaused = False
         self.sliderIsPressed = False
         self.playTimeOffset = 0
@@ -46,7 +44,10 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def loop(self):
         if Functions.checkMusicEnd():
+            if self.button_Repeat.isChecked():
+                Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
             self.nextPressed()
+        
         if not self.slider_MusicDuration.isSliderDown():
             self.updateSlider()
 
@@ -65,7 +66,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.label_SoundEnd.setText('{:2d}:{:02d}'.format(minutes, seconds))
 
     def nextPressed(self):
-        if self.random == True:
+        if self.button_Random.isChecked() == True:
             self.currentSong = random.randint(0,99)
         else: 
             self.currentSong += 1
@@ -87,12 +88,11 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         
     def randomPressed(self):
         #retoOLED.randomOled()
-        self.random = not self.random
         self.currentSong = random.randint(0,99)
 
     def repeatPressed(self):
         #retoOLED.repeatOled()
-        self.repeat = not self.repeat
+        0
         
     def rewindPressed(self):
         if self.random == True:
