@@ -1,7 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
-    <file>Doo-Woops &amp; Hooligans.jpg</file>
     <file>So Far So Good.jpg</file>
+    <file>Doo-Wops &amp; Hooligans.jpg</file>
     <file>Button_Random_OFF.jpg</file>
     <file>Button_Pause_OFF.jpg</file>
     <file>Button_Pause_ON.jpg</file>
