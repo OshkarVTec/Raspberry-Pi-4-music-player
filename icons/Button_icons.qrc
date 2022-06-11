@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>So Far So Good.jpg</file>
     <file>Button_Random_OFF.jpg</file>
     <file>Button_Pause_OFF.jpg</file>
     <file>Button_Pause_ON.jpg</file>

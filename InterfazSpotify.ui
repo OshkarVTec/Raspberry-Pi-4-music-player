@@ -141,7 +141,7 @@ border-image: url(:/newPrefix/Button_FF_ON.jpg);
    <widget class="QPushButton" name="button_Repeat">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>830</x>
       <y>440</y>
       <width>61</width>
       <height>61</height>
@@ -180,7 +180,7 @@ border-image: url(:/newPrefix/Button_Random_ON.jpg);
    <widget class="QSlider" name="slider_MusicDuration">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>460</y>
       <width>551</width>
       <height>22</height>
@@ -226,7 +226,7 @@ QSlider::add-page:horizontal{
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>0:45</string>
+     <string>0:00</string>
     </property>
     <property name="textFormat">
      <enum>Qt::RichText</enum>
@@ -238,7 +238,7 @@ QSlider::add-page:horizontal{
    <widget class="QPushButton" name="button_Random">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>440</y>
       <width>61</width>
       <height>61</height>
@@ -278,8 +278,15 @@ border-image: url(:/newPrefix/Button_Repeat_ON.jpg);
       <height>341</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Arial Rounded MT Bold</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(61, 61, 61);</string>
+     <string notr="true">background-color: rgb(61, 61, 61);
+color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -380,7 +387,7 @@ border-image: url(:/newPrefix/Button_Repeat_ON.jpg);
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>0:45</string>
+     <string>0:00</string>
     </property>
     <property name="textFormat">
      <enum>Qt::RichText</enum>

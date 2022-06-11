@@ -23,6 +23,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.songs = createSongs.getSongs()
+        self.images = createSongs.getImages()
         self.currentSong = 0
         #Flags 
         self.random = False
@@ -43,7 +44,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         for x in range(len(self.songs)):
             pygame.mixer.music.load(self.songs[x])
             audiofile = eyed3.load(self.songs[x])
-            item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist) 
+            item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
             self.listWidget.insertItem(x, item)  
 
     def checkMixerStatus(self):
@@ -59,13 +60,18 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.currentSong = 0
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
-        self.isPaused = False
-        self.isPaused = Functions.play(self.songs[self.currentSong], self.isPaused)
+        self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+        self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
+        self.label_2.setText(songTitle)
+        self.label_3.setText(songArtist)
 
     def playPressed(self, gui):
         if self.button_Play.isChecked() == True:
             #retoOLED.playOled()
-            self.isPaused = Functions.play(self.songs[self.currentSong], self.isPaused)
+            self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+            self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
+            self.label_2.setText(songTitle)
+            self.label_3.setText(songArtist)
         else:
             #retoOLED.pauseOled()
             self.isPaused = Functions.pause(self.isPaused)
@@ -88,7 +94,10 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.currentSong = len(self.songs) - 1
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
-        self.isPaused = Functions.play(self.songs[self.currentSong], self.isPaused)
+        self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+        self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
+        self.label_2.setText(songTitle)
+        self.label_3.setText(songArtist)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

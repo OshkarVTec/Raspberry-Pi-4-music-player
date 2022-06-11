@@ -2,12 +2,12 @@ import os
 
 def getImages():
     currentPath = os.path.dirname(os.path.abspath(__file__)); # Absolute dir the script is in
-    filepath = "Album_images/"; 
+    filepath = "images/"; 
     directory = os.listdir(os.path.join(currentPath, filepath))
     images =  []
     for fi in directory:
         if fi.endswith('.jpg'):
-            images.append(os.path.join(currentPath, filepath, fi))
+            images.append(fi)
     return images
 
 def getSongs():
