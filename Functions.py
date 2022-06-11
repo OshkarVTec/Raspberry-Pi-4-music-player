@@ -41,10 +41,11 @@ def checkMusicEnd():
                 return True
             return False
 
-def setPlayTime(playTime):
+def setPlayTime(playTime, isPaused):
    pygame.mixer.music.play()
    pygame.mixer.music.set_pos(playTime)
-
+   if isPaused:
+      pause(isPaused)
 def getPlayTime(isPaused):
    if pygame.mixer.music.get_busy() or isPaused:
       return pygame.mixer.music.get_pos()
