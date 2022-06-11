@@ -15,7 +15,6 @@ if not pygame.mixer: print ('Warning, sound disabled')
 
 def play(songPath, isPaused, images):
    audiofile = eyed3.load(songPath)
-
    for x in range (len(images)):
       if (str(audiofile.tag.album)+".jpg") == images[x]:
          albumCover = images[x]
@@ -43,7 +42,7 @@ def checkMusicEnd():
             return False
 
 def setPlayTime(playTime):
-   pygame.mixer.music.rewind()
+   pygame.mixer.music.play()
    pygame.mixer.music.set_pos(playTime)
 
 def getPlayTime(isPaused):

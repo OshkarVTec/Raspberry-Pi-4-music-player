@@ -31,13 +31,14 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Random.clicked.connect(lambda : self.randomPressed())
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed())
         self.button_Rewind.clicked.connect(lambda : self.rewindPressed())
+        self.slider_MusicDuration.sliderMoved.connect(lambda: self.sliderMove())
         #self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
 
         self.listWidget.clear()
         for x in range(len(self.songs)):
             pygame.mixer.music.load(self.songs[x])
             audiofile = eyed3.load(self.songs[x])
-            item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
+            item = "{:02d}".format(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
             self.listWidget.insertItem(x, item)  
 
     def loop(self):
