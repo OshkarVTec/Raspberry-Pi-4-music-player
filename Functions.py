@@ -35,7 +35,6 @@ def checkMusicEnd():
        return True
     return False
 
-
 def setPlayTime(playTime, isPaused):
     player.play()
     player.set_time(playTime * 1000) 

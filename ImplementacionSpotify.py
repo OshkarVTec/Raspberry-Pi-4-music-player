@@ -41,9 +41,9 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def loop(self):
         if Functions.checkMusicEnd():
             if self.button_Repeat.isChecked():
-                Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-            self.nextPressed()
-        
+                self.playPressed()
+            else:
+                self.nextPressed()
         if not self.slider_MusicDuration.isSliderDown():
             self.updateSlider()
 
