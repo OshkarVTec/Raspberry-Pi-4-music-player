@@ -69,7 +69,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def nextPressed(self):
         self.offset = 0
         if self.button_Random.isChecked() == True:
-            self.currentSong = random.randint(0,99)
+            self.currentSong = random.randint(0, len(self.songs) - 1)
         else: 
             self.currentSong += 1
             if self.currentSong >= len(self.songs):
@@ -91,7 +91,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         
     def randomPressed(self):
         #retoOLED.randomOled()
-        self.currentSong = random.randint(0,99)
+        self.currentSong = random.randint(0, len(self.songs) - 1)
 
     def repeatPressed(self):
         #retoOLED.repeatOled()
