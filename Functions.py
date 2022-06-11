@@ -16,6 +16,7 @@ def play(songPath, isPaused, images):
          albumCover = images[x]
    songTitle = str(audiofile.tag.title)
    songArtist = str(audiofile.tag.artist)
+   songAlbum = str(audiofile.tag.album)
    duration = int(audiofile.info.time_secs)
    if (isPaused):
       player.set_pause(0)
@@ -25,7 +26,7 @@ def play(songPath, isPaused, images):
       player.play()
    isPaused = False
    
-   return isPaused, songTitle, songArtist, albumCover, duration
+   return isPaused, songTitle, songArtist, songAlbum, albumCover, duration
 
 def pause(isPaused):
    player.set_pause(1)
