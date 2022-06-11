@@ -72,6 +72,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.currentSong = 0
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
+        self.isPaused = False
         self.isPaused, songTitle, songArtist, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
         self.changeInformation(songTitle, songArtist, albumCover, duration)
 
@@ -101,6 +102,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.currentSong = len(self.songs) - 1
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
+        self.isPaused = False
         self.isPaused, songTitle, songArtist, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
         self.changeInformation(songTitle, songArtist, albumCover, duration)
 
