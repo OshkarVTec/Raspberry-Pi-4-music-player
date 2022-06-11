@@ -19,10 +19,6 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalScrollBar = QtWidgets.QScrollBar(self.centralwidget)
-        self.verticalScrollBar.setGeometry(QtCore.QRect(540, 0, 16, 341))
-        self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
-        self.verticalScrollBar.setObjectName("verticalScrollBar")
         self.button_Rewind = QtWidgets.QPushButton(self.centralwidget)
         self.button_Rewind.setGeometry(QtCore.QRect(340, 380, 61, 61))
         self.button_Rewind.setAutoFillBackground(False)
@@ -131,6 +127,7 @@ class Ui_MainWindow(object):
 "    background: white;\n"
 "    border: 1px solid black;\n"
 "}")
+        self.slider_MusicDuration.setSingleStep(0)
         self.slider_MusicDuration.setOrientation(QtCore.Qt.Horizontal)
         self.slider_MusicDuration.setObjectName("slider_MusicDuration")
         self.label_SoundStart = QtWidgets.QLabel(self.centralwidget)
@@ -171,7 +168,7 @@ class Ui_MainWindow(object):
 "color: rgb(255, 255, 255);")
         self.listWidget.setObjectName("listWidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(630, 20, 261, 261))
+        self.label.setGeometry(QtCore.QRect(610, 20, 261, 261))
         self.label.setAutoFillBackground(False)
         self.label.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.label.setText("")
@@ -207,7 +204,6 @@ class Ui_MainWindow(object):
         self.label_SoundEnd.setAlignment(QtCore.Qt.AlignCenter)
         self.label_SoundEnd.setObjectName("label_SoundEnd")
         self.label_4.raise_()
-        self.verticalScrollBar.raise_()
         self.button_Rewind.raise_()
         self.button_Play.raise_()
         self.button_FF.raise_()
@@ -240,7 +236,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Artista"))
         self.label_4.setText(_translate("MainWindow", "TextLabel"))
         self.label_SoundEnd.setText(_translate("MainWindow", "0:00"))
-import Button_icons
+import Button_icons_rc
 
 
 if __name__ == "__main__":

@@ -8,7 +8,8 @@ import createSongs
 #import retoUART
 #import retoOLED
 
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5.QtWidgets import QApplication, QListWidget
 from Spotify import *
 
 
@@ -65,8 +66,19 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.slider_MusicDuration.setMaximum(duration)
         minutes, seconds = divmod(duration, 60)
         self.label_SoundEnd.setText('{:2d}:{:02d}'.format(minutes, seconds))
+        self.changeList(QtGui.QColor(119,221,119))
+
+
+    def changeList(self, color):
+        audiofile = eyed3.load(self.songs[self.currentSong])
+        item = "{:02d}".format(self.currentSong) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
+        i = QtWidgets.QListWidgetItem(item)
+        self.listWidget.takeItem(self.currentSong)
+        i.setForeground(color)
+        self.listWidget.insertItem(self.currentSong, i)
 
     def nextPressed(self):
+        self.changeList(QtGui.QColor(255,255,255))
         self.offset = 0
         if self.button_Random.isChecked() == True:
             self.currentSong = random.randint(0, len(self.songs) - 1)
@@ -101,6 +113,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.offset = 0
         songDuration = Functions.getPlayTime(self.isPaused)//1000
         if songDuration <= 5:
+            self.changeList(QtGui.QColor(255,255,255))
             if self.button_Random.isChecked() == True == True:
                 self.currentSong = random.randint(0,99)
             else: 

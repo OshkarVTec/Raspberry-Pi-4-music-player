@@ -20,19 +20,6 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QScrollBar" name="verticalScrollBar">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>0</y>
-      <width>16</width>
-      <height>341</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
    <widget class="QPushButton" name="button_Rewind">
     <property name="geometry">
      <rect>
@@ -206,6 +193,9 @@ QSlider::add-page:horizontal{
 	border: 1px solid black;
 }</string>
     </property>
+    <property name="singleStep">
+     <number>0</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
@@ -292,7 +282,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>610</x>
       <y>20</y>
       <width>261</width>
       <height>261</height>
@@ -397,7 +387,6 @@ color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <zorder>label_4</zorder>
-   <zorder>verticalScrollBar</zorder>
    <zorder>button_Rewind</zorder>
    <zorder>button_Play</zorder>
    <zorder>button_FF</zorder>
