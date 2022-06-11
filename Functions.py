@@ -21,6 +21,7 @@ def play(songPath, isPaused, images):
          albumCover = images[x]
    songTitle = str(audiofile.tag.title)
    songArtist = str(audiofile.tag.artist)
+   duration = int(audiofile.info.time_secs)
    if (isPaused):
       pygame.mixer.music.unpause()
    else:
@@ -28,7 +29,7 @@ def play(songPath, isPaused, images):
       pygame.mixer.music.play()
       pygame.mixer.music.set_endevent(MUSIC_END)
    isPaused = False
-   return isPaused, songTitle, songArtist, albumCover
+   return isPaused, songTitle, songArtist, albumCover, duration
 
 def pause(isPaused):
    pygame.mixer.music.pause()
@@ -40,6 +41,13 @@ def checkMusicEnd():
             if event.type == MUSIC_END:
                 return True
             return False
+
+def setPlayTime(playTime):
+   pygame.mixer.music.rewind()
+   pygame.mixer.music.set_pos(playTime)
+
+def getPlayTime():
+   return pygame.mixer.music.get_pos()
 
 
 

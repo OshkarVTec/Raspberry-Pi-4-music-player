@@ -23,16 +23,19 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.random = False
         self.repeat = False
         self.isPaused = False
+        self.sliderIsPressed = False
+        self.playTimeOffset = 0
         self.timer = QtCore.QTimer(self)
         self.timer.start(100)
         self.setupUi(self)
         
-        self.timer.timeout.connect(lambda: self.checkMixerStatus())
-        self.button_FF.clicked.connect(lambda : self.nextPressed(False))
-        self.button_Play.clicked.connect(lambda :self.playPressed(False))
-        self.button_Random.clicked.connect(lambda : self.randomPressed(False))
-        self.button_Repeat.clicked.connect(lambda : self.repeatPressed(False))
-        self.button_Rewind.clicked.connect(lambda : self.rewindPressed(False))
+        self.timer.timeout.connect(lambda: self.loop())
+        self.button_FF.clicked.connect(lambda : self.nextPressed())
+        self.button_Play.clicked.connect(lambda :self.playPressed())
+        self.button_Random.clicked.connect(lambda : self.randomPressed())
+        self.button_Repeat.clicked.connect(lambda : self.repeatPressed())
+        self.button_Rewind.clicked.connect(lambda : self.rewindPressed())
+        #self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
 
         self.listWidget.clear()
         for x in range(len(self.songs)):
@@ -41,17 +44,27 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
             self.listWidget.insertItem(x, item)  
 
-    def changeInformation(self, songTitle, songArtist, albumCover):
+    def loop(self):
+        if Functions.checkMusicEnd():
+            self.nextPressed()
+        if not self.slider_MusicDuration.isSliderDown():
+            self.updateSlider()
+
+    def updateSlider(self):
+        playTime = Functions.getPlayTime()//1000 + self.playTimeOffset
+        minutes, seconds = divmod(playTime, 60)
+        self.slider_MusicDuration.setValue(playTime)
+        self.label_SoundStart.setText('{:2d}:{:02d}'.format(minutes, seconds))
+
+    def changeInformation(self, songTitle, songArtist, albumCover, duration):
         self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
         self.label_2.setText(songTitle)
         self.label_3.setText(songArtist)
+        self.slider_MusicDuration.setMaximum(duration)
+        minutes, seconds = divmod(duration, 60)
+        self.label_SoundEnd.setText('{:2d}:{:02d}'.format(minutes, seconds))
 
-
-    def checkMixerStatus(self):
-        if Functions.checkMusicEnd():
-            self.nextPressed()
-
-    def nextPressed(self, gui):
+    def nextPressed(self):
         if self.random == True:
             self.currentSong = random.randint(0,99)
         else: 
@@ -60,28 +73,28 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.currentSong = 0
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
-        self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-        self.changeInformation(songTitle, songArtist, albumCover)
+        self.isPaused, songTitle, songArtist, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+        self.changeInformation(songTitle, songArtist, albumCover, duration)
 
-    def playPressed(self, gui):
+    def playPressed(self):
         if self.button_Play.isChecked() == True:
             #retoOLED.playOled()
-            self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-            self.changeInformation(songTitle, songArtist, albumCover)
+            self.isPaused, songTitle, songArtist, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+            self.changeInformation(songTitle, songArtist, albumCover, duration)
         else:
             #retoOLED.pauseOled()
             self.isPaused = Functions.pause(self.isPaused)
         
-    def randomPressed(self, gui):
+    def randomPressed(self):
         #retoOLED.randomOled()
         self.random = not self.random
         self.currentSong = random.randint(0,99)
 
-    def repeatPressed(self, gui):
+    def repeatPressed(self):
         #retoOLED.repeatOled()
         self.repeat = not self.repeat
         
-    def rewindPressed(self, gui):
+    def rewindPressed(self):
         if self.random == True:
             self.currentSong = random.randint(0,99)
         else: 
@@ -90,8 +103,8 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.currentSong = len(self.songs) - 1
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
-        self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-        self.changeInformation(songTitle, songArtist, albumCover)
+        self.isPaused, songTitle, songArtist, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+        self.changeInformation(songTitle, songArtist, albumCover, duration)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
