@@ -11,6 +11,7 @@ player = instance.media_player_new()
 def play(songPath, isPaused, images):
    audiofile = eyed3.load(songPath)
    for x in range (len(images)):
+      print(images[x])
       if (str(audiofile.tag.album)+".jpg") == images[x]:
          albumCover = images[x]
    songTitle = str(audiofile.tag.title)
@@ -23,6 +24,7 @@ def play(songPath, isPaused, images):
       player.set_media(media)
       player.play()
    isPaused = False
+   
    return isPaused, songTitle, songArtist, albumCover, duration
 
 def pause(isPaused):

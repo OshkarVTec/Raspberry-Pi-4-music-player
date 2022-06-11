@@ -2,7 +2,7 @@ import os
 
 def getImages():
     currentPath = os.path.dirname(os.path.abspath(__file__)); # Absolute dir the script is in
-    filepath = "images/"; 
+    filepath = "covers/"; 
     directory = os.listdir(os.path.join(currentPath, filepath))
     images =  []
     for fi in directory:
