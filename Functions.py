@@ -1,15 +1,12 @@
 import eyed3
-import pygame
+import vlc
 from PyQt5 import QtGui, QtCore
-
 from pygame import mixer
-MUSIC_END = pygame.USEREVENT+1
 
-pygame.mixer.init()
-pygame.init()
-
-if not pygame.font: print ('Warning, fonts disabled')
-if not pygame.mixer: print ('Warning, sound disabled')
+instance = vlc.Instance()
+player = instance.media_player_new()
+#events = player.event_manager()
+#events.event_attach(vlc.EventType.MediaPlayerEndReached, SongFinished)
 
 def play(songPath, isPaused, images):
    audiofile = eyed3.load(songPath)
@@ -20,34 +17,37 @@ def play(songPath, isPaused, images):
    songArtist = str(audiofile.tag.artist)
    duration = int(audiofile.info.time_secs)
    if (isPaused):
-      pygame.mixer.music.unpause()
+      player.set_pause(0)
    else:
-      pygame.mixer.music.load(songPath)
-      pygame.mixer.music.play()
-      pygame.mixer.music.set_endevent(MUSIC_END)
+      media = instance.media_new_path(songPath) #Your audio file here
+      player.set_media(media)
+      player.play()
    isPaused = False
    return isPaused, songTitle, songArtist, albumCover, duration
 
 def pause(isPaused):
-   pygame.mixer.music.pause()
+   player.set_pause(1)
    isPaused = True
    return isPaused
 
 def checkMusicEnd():
-   for event in pygame.event.get():
-            if event.type == MUSIC_END:
-                return True
-            return False
+    if player.get_state() == 6:
+       return True
+    return False
+
 
 def setPlayTime(playTime, isPaused):
-   pygame.mixer.music.play()
-   pygame.mixer.music.set_pos(playTime)
-   if isPaused:
-      pause(isPaused)
+    player.play()
+    player.set_time(playTime * 1000) 
+    if isPaused:
+        pause(isPaused)
+
 def getPlayTime(isPaused):
-   if pygame.mixer.music.get_busy() or isPaused:
-      return pygame.mixer.music.get_pos()
+   if player.is_playing() or isPaused:
+      return player.get_time()
    return 0
+
+
 
 
 
