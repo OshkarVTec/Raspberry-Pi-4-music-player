@@ -12,12 +12,6 @@ import createSongs
 from PyQt5 import QtGui, QtCore
 from Spotify import *
 
-from pygame import mixer
-
-pygame.mixer.init()
-if not pygame.font: print ('Warning, fonts disabled')
-if not pygame.mixer: print ('Warning, sound disabled')
-
 
 class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, *args, **kwargs):
