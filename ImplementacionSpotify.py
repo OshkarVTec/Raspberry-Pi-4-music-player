@@ -53,7 +53,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
 
 
     def updateSlider(self):
-        playTime = Functions.getPlayTime(self.isPaused)//1000 + self.offset
+        playTime = Functions.getPlayTime(self.isPaused)//1000 
         minutes, seconds = divmod(playTime, 60)
         self.slider_MusicDuration.setValue(playTime)
         self.label_SoundStart.setText('{:2d}:{:02d}'.format(minutes, seconds))
