@@ -47,6 +47,12 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             item = str(x) + " " + str(audiofile.tag.title) + " - " + str(audiofile.tag.artist)
             self.listWidget.insertItem(x, item)  
 
+    def changeInformation(self, songTitle, songArtist, albumCover):
+        self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
+        self.label_2.setText(songTitle)
+        self.label_3.setText(songArtist)
+
+
     def checkMixerStatus(self):
         if Functions.checkMusicEnd():
             self.nextPressed()
@@ -61,17 +67,13 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
         self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-        self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
-        self.label_2.setText(songTitle)
-        self.label_3.setText(songArtist)
+        self.changeInformation(songTitle, songArtist, albumCover)
 
     def playPressed(self, gui):
         if self.button_Play.isChecked() == True:
             #retoOLED.playOled()
             self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-            self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
-            self.label_2.setText(songTitle)
-            self.label_3.setText(songArtist)
+            self.changeInformation(songTitle, songArtist, albumCover)
         else:
             #retoOLED.pauseOled()
             self.isPaused = Functions.pause(self.isPaused)
@@ -95,9 +97,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Play.setChecked(True)
         #retoOLED.nextOled()
         self.isPaused, songTitle, songArtist,albumCover = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
-        self.label.setStyleSheet("border-image: url(:/newPrefix/"+albumCover+");\n")
-        self.label_2.setText(songTitle)
-        self.label_3.setText(songArtist)
+        self.changeInformation(songTitle, songArtist, albumCover)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
