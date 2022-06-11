@@ -1,7 +1,5 @@
 import eyed3
-import os, pygame
-import re
-import random
+import pygame
 from PyQt5 import QtGui, QtCore
 
 from pygame import mixer
