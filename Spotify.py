@@ -87,9 +87,9 @@ class Ui_MainWindow(object):
         self.button_FF.setText("")
         self.button_FF.setCheckable(True)
         self.button_FF.setObjectName("button_FF")
-        self.button_Repeat = QtWidgets.QPushButton(self.centralwidget)
-        self.button_Repeat.setGeometry(QtCore.QRect(830, 440, 61, 61))
-        self.button_Repeat.setStyleSheet("QPushButton {\n"
+        self.button_Random = QtWidgets.QPushButton(self.centralwidget)
+        self.button_Random.setGeometry(QtCore.QRect(830, 440, 61, 61))
+        self.button_Random.setStyleSheet("QPushButton {\n"
 "color: #333;\n"
 "border: 2px solid #555;\n"
 "border-radius: 20px;\n"
@@ -107,10 +107,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        self.button_Repeat.setText("")
-        self.button_Repeat.setCheckable(True)
-        self.button_Repeat.setChecked(False)
-        self.button_Repeat.setObjectName("button_Repeat")
+        self.button_Random.setText("")
+        self.button_Random.setCheckable(True)
+        self.button_Random.setChecked(False)
+        self.button_Random.setObjectName("button_Random")
         self.slider_MusicDuration = QtWidgets.QSlider(self.centralwidget)
         self.slider_MusicDuration.setGeometry(QtCore.QRect(200, 460, 551, 22))
         self.slider_MusicDuration.setStyleSheet("QSlider::groove:horizontal{\n"
@@ -140,9 +140,9 @@ class Ui_MainWindow(object):
         self.label_SoundStart.setTextFormat(QtCore.Qt.RichText)
         self.label_SoundStart.setAlignment(QtCore.Qt.AlignCenter)
         self.label_SoundStart.setObjectName("label_SoundStart")
-        self.button_Random = QtWidgets.QPushButton(self.centralwidget)
-        self.button_Random.setGeometry(QtCore.QRect(60, 440, 61, 61))
-        self.button_Random.setStyleSheet("QPushButton {\n"
+        self.button_Repeat = QtWidgets.QPushButton(self.centralwidget)
+        self.button_Repeat.setGeometry(QtCore.QRect(60, 440, 61, 61))
+        self.button_Repeat.setStyleSheet("QPushButton {\n"
 "color: #333;\n"
 "border: 2px solid #555;\n"
 "border-radius: 20px;\n"
@@ -158,14 +158,14 @@ class Ui_MainWindow(object):
 "QPushButton:checked {\n"
 "border-image: url(:/newPrefix/Button_Repeat_ON.jpg);\n"
 "}")
-        self.button_Random.setText("")
-        self.button_Random.setCheckable(True)
-        self.button_Random.setObjectName("button_Random")
+        self.button_Repeat.setText("")
+        self.button_Repeat.setCheckable(True)
+        self.button_Repeat.setObjectName("button_Repeat")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
         self.listWidget.setGeometry(QtCore.QRect(0, 0, 541, 341))
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
-        font.setPointSize(11)
+        font.setPointSize(10)
         self.listWidget.setFont(font)
         self.listWidget.setStyleSheet("background-color: rgb(61, 61, 61);\n"
 "color: rgb(255, 255, 255);")
@@ -174,6 +174,7 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QtCore.QRect(630, 20, 261, 261))
         self.label.setAutoFillBackground(False)
         self.label.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.label.setText("")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(630, 290, 261, 31))
@@ -210,10 +211,10 @@ class Ui_MainWindow(object):
         self.button_Rewind.raise_()
         self.button_Play.raise_()
         self.button_FF.raise_()
-        self.button_Repeat.raise_()
+        self.button_Random.raise_()
         self.slider_MusicDuration.raise_()
         self.label_SoundStart.raise_()
-        self.button_Random.raise_()
+        self.button_Repeat.raise_()
         self.listWidget.raise_()
         self.label.raise_()
         self.label_2.raise_()
@@ -235,12 +236,11 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_SoundStart.setText(_translate("MainWindow", "0:00"))
-        self.label.setText(_translate("MainWindow", "Portada Album"))
         self.label_2.setText(_translate("MainWindow", "Nombre de la Canción"))
         self.label_3.setText(_translate("MainWindow", "Artista"))
         self.label_4.setText(_translate("MainWindow", "TextLabel"))
         self.label_SoundEnd.setText(_translate("MainWindow", "0:00"))
-import Button_icons
+import Button_icons_rc
 
 
 if __name__ == "__main__":

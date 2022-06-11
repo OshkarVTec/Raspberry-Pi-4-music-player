@@ -138,7 +138,7 @@ border-image: url(:/newPrefix/Button_FF_ON.jpg);
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="button_Repeat">
+   <widget class="QPushButton" name="button_Random">
     <property name="geometry">
      <rect>
       <x>830</x>
@@ -235,7 +235,7 @@ QSlider::add-page:horizontal{
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="button_Random">
+   <widget class="QPushButton" name="button_Repeat">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -281,7 +281,7 @@ border-image: url(:/newPrefix/Button_Repeat_ON.jpg);
     <property name="font">
      <font>
       <family>Arial Rounded MT Bold</family>
-      <pointsize>11</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -305,7 +305,7 @@ color: rgb(255, 255, 255);</string>
      <string notr="true">background-color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
-     <string>Portada Album</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -401,10 +401,10 @@ color: rgb(255, 255, 255);</string>
    <zorder>button_Rewind</zorder>
    <zorder>button_Play</zorder>
    <zorder>button_FF</zorder>
-   <zorder>button_Repeat</zorder>
+   <zorder>button_Random</zorder>
    <zorder>slider_MusicDuration</zorder>
    <zorder>label_SoundStart</zorder>
-   <zorder>button_Random</zorder>
+   <zorder>button_Repeat</zorder>
    <zorder>listWidget</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
