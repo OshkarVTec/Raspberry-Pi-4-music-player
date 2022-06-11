@@ -21,8 +21,6 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.currentSong = 0
         #Flags 
         self.isPaused = False
-        self.sliderIsPressed = False
-        self.playTimeOffset = 0
         self.timer = QtCore.QTimer(self)
         self.timer.start(100)
         self.setupUi(self)
@@ -52,7 +50,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             self.updateSlider()
 
     def updateSlider(self):
-        playTime = Functions.getPlayTime()//1000 + self.playTimeOffset
+        playTime = Functions.getPlayTime(self.isPaused)//1000
         minutes, seconds = divmod(playTime, 60)
         self.slider_MusicDuration.setValue(playTime)
         self.label_SoundStart.setText('{:2d}:{:02d}'.format(minutes, seconds))
@@ -95,7 +93,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         0
         
     def rewindPressed(self):
-        if self.random == True:
+        if self.button_Random.isChecked() == True == True:
             self.currentSong = random.randint(0,99)
         else: 
             self.currentSong -= 1

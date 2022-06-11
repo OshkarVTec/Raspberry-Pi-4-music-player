@@ -46,8 +46,10 @@ def setPlayTime(playTime):
    pygame.mixer.music.rewind()
    pygame.mixer.music.set_pos(playTime)
 
-def getPlayTime():
-   return pygame.mixer.music.get_pos()
+def getPlayTime(isPaused):
+   if pygame.mixer.music.get_busy() or isPaused:
+      return pygame.mixer.music.get_pos()
+   return 0
 
 
 
