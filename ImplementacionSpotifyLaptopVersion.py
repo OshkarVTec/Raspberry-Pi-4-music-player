@@ -79,6 +79,14 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     # def returnMonitor(self):
     #     retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
 
+    def setSong(self, number):
+        self.changeList(QtGui.QColor(255,255,255))
+        self.current = number
+        self.button_Play.setChecked(True)
+        self.isPaused = False
+        self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+        self.changeInformation(albumCover, duration)
+        
     def playTimeChanged(self):
         self.offset = self.slider_MusicDuration.value()
         Functions.setPlayTime(self.offset, self.isPaused)

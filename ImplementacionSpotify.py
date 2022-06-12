@@ -51,15 +51,11 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         if not self.slider_MusicDuration.isSliderDown():
             self.updateSlider()
 
-        dataRead = retoUART.readUart()
-        if len(dataRead) == 2 and dataRead != b'':
-            dataString = dataRead.decode()
-            if not dataString[0].isnumeric():
-                print(dataString[0])
-                self.keyPadLetters(dataString[0])
-            else:
-                print(dataString[0])
-                #code para letras
+        dataUart = retoUART.readUart()
+        if not dataUart.isnumeric():
+            self.keyPadLetters(dataUart)
+        else:
+            self.keyPadNumbers(dataUart)
 
     def keyPadLetters(self, data):
         if data == 'A':
@@ -75,6 +71,25 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             print('hdkahgdklahd')
             self.randomPressed(False)
 
+    def keyPadNumbers(self, data):
+        number = int(data)
+        retoOLED.showNumber(number)
+        time.sleep(1)
+        newData = Functions.readUart()
+        if newData.isnumeric():
+            number = int(data + newData)
+            retoOLED.showNumber(number)
+        if number < len(self.songs):
+            self.setSong(number)
+        self.returnMonitor()
+    
+    def setSong(self, number):
+        self.changeList(QtGui.QColor(255,255,255))
+        self.current = number
+        self.button_Play.setChecked(True)
+        self.isPaused = False
+        self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
+        self.changeInformation(albumCover, duration)
 
     def returnMonitor(self):
         retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
