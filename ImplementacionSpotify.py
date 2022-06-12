@@ -6,8 +6,7 @@ import Functions
 import createSongs
 import retoOLED
 import time
-#import retoUART
-#import retoOLED
+import retoUART
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QListWidget
@@ -31,10 +30,10 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         
         self.timer.timeout.connect(lambda: self.loop())
         self.button_FF.clicked.connect(lambda : self.nextPressed())
-        self.button_Play.clicked.connect(lambda :self.playPressed())
-        self.button_Random.clicked.connect(lambda : self.randomPressed())
-        self.button_Repeat.clicked.connect(lambda : self.repeatPressed())
+        self.button_Play.clicked.connect(lambda :self.playPressed(True))
         self.button_Rewind.clicked.connect(lambda : self.rewindPressed())
+        self.button_Random.clicked.connect(lambda : self.randomPressed(True))
+        self.button_Repeat.clicked.connect(lambda : self.repeatPressed(True))
         self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
 
         self.listWidget.clear()
@@ -51,7 +50,32 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.nextPressed()
         if not self.slider_MusicDuration.isSliderDown():
             self.updateSlider()
-    
+
+        dataRead = retoUART.readUart()
+        if len(dataRead) == 2 and dataRead != b'':
+            dataString = dataRead.decode()
+            if not dataString[0].isnumeric():
+                print(dataString[0])
+                self.keyPadLetters(dataString[0])
+            else:
+                print(dataString[0])
+                #code para letras
+
+    def keyPadLetters(self, data):
+        if data == 'A':
+            self.rewindPressed()
+        if data == 'B':
+            self.playPressed(False)
+        if data == 'C':
+            self.nextPressed()
+        if data == '*':
+            print('gutyuytuytu')
+            self.repeatPressed(False)
+        if data == '#':
+            print('hdkahgdklahd')
+            self.randomPressed(False)
+
+
     def returnMonitor(self):
         retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
 
@@ -100,7 +124,10 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         time.sleep(1)
         self.returnMonitor()
 
-    def playPressed(self):
+    def playPressed(self, inputGui):
+        if  not inputGui:
+            self.button_Play.setChecked(not self.button_Play.isChecked())
+
         if self.button_Play.isChecked() == True:
             retoOLED.playOled()
             self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
@@ -111,12 +138,17 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         time.sleep(1)
         self.returnMonitor()
         
-    def randomPressed(self):
+    def randomPressed(self, inputGui):
+        if not inputGui:
+            self.button_Random.setChecked(not self.button_Random.isChecked())
         retoOLED.randomOled()
         time.sleep(1)
         self.returnMonitor()
 
-    def repeatPressed(self):
+    def repeatPressed(self, inputGui):
+        if not inputGui:
+            self.button_Repeat.setChecked(not self.button_Repeat.isChecked())
+
         retoOLED.repeatOled()
         time.sleep(1)
         self.returnMonitor()
@@ -127,7 +159,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         if songDuration <= 5:
             self.changeList(QtGui.QColor(255,255,255))
             if self.button_Random.isChecked() == True == True:
-                self.currentSong = random.randint(0,99)
+                self.currentSong = random.randint(0, len(self.songs) - 1)
             else: 
                 self.currentSong -= 1
                 if self.currentSong < 0:

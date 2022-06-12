@@ -1,4 +1,5 @@
 import serial
+import time
 ser=serial.Serial(
 port='/dev/ttyACM0',
 baudrate= 19200,
@@ -8,3 +9,4 @@ bytesize= serial.EIGHTBITS,timeout=1)
 def readUart():
     keypadData = ser.readline(ser.in_waiting)
     return keypadData
+
