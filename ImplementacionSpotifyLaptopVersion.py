@@ -36,7 +36,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Random.clicked.connect(lambda : self.randomPressed(True))
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(True))
         self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
-        self.slider_Volume.valueChanged.connect(lambda : self.changeVolume())
+        #self.slider_Volume.valueChanged.connect(lambda : self.changeVolume())
         self.listWidget.itemDoubleClicked.connect(self.songChoose)
 
         self.listWidget.clear()
