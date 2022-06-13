@@ -35,6 +35,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Random.clicked.connect(lambda : self.randomPressed(True))
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(True))
         self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
+        self.listWidget.itemDoubleClicked.connect(self.songChoose)
 
         self.listWidget.clear()
         for x in range(len(self.songs)):
@@ -82,10 +83,14 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         if number < len(self.songs):
             self.setSong(number)
         self.returnMonitor()
+
+    def songChoose(self):
+        number = self.listWidget.currentRow()
+        self.setSong(number)
     
     def setSong(self, number):
         self.changeList(QtGui.QColor(255,255,255))
-        self.current = number
+        self.currentSong = number
         self.button_Play.setChecked(True)
         self.isPaused = False
         self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
