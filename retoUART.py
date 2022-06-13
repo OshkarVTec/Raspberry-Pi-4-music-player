@@ -9,6 +9,6 @@ bytesize= serial.EIGHTBITS,timeout=1)
 def readUart():
     keypadData = ser.readline(ser.in_waiting)
     if len(keypadData) == 2 and keypadData != b'':
-            dataString = keypadData.decode()
-    return dataString[0]
-
+        dataString = keypadData.decode()
+        return dataString[0]
+    return ""

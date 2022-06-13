@@ -24,10 +24,12 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.currentSong = 0
         self.offset = 0
         self.isPaused = False
+        self.timerOled = QtCore.QTimer(self)
         self.timer = QtCore.QTimer(self)
         self.timer.start(100)
         self.setupUi(self)
         
+        self.timerOled.timeout.connect(lambda : self.returnMonitor())
         self.timer.timeout.connect(lambda: self.loop())
         self.button_FF.clicked.connect(lambda : self.nextPressed())
         self.button_Play.clicked.connect(lambda :self.playPressed(True))
@@ -66,10 +68,8 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         if data == 'C':
             self.nextPressed()
         if data == '*':
-            print('gutyuytuytu')
             self.repeatPressed(False)
         if data == '#':
-            print('hdkahgdklahd')
             self.randomPressed(False)
 
     def keyPadNumbers(self, data):
@@ -82,7 +82,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             retoOLED.showNumber(number)
         if number < len(self.songs):
             self.setSong(number)
-        self.returnMonitor()
+        self.timerOled.start(1000)
 
     def songChoose(self):
         number = self.listWidget.currentRow()
@@ -98,6 +98,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def returnMonitor(self):
         retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
+        self.timerOled.stop()
 
     def playTimeChanged(self):
         self.offset = self.slider_MusicDuration.value()
@@ -141,8 +142,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.isPaused = False
         self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
         self.changeInformation(albumCover, duration)
-        time.sleep(1)
-        self.returnMonitor()
+        self.timerOled.start(1000)
 
     def playPressed(self, inputGui):
         if  not inputGui:
@@ -155,23 +155,20 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         else:
             retoOLED.pauseOled()
             self.isPaused = Functions.pause(self.isPaused)
-        time.sleep(1)
-        self.returnMonitor()
+        self.timerOled.start(1000)
         
     def randomPressed(self, inputGui):
         if not inputGui:
             self.button_Random.setChecked(not self.button_Random.isChecked())
         retoOLED.randomOled()
-        time.sleep(1)
-        self.returnMonitor()
+        self.timerOled.start(1000)
 
     def repeatPressed(self, inputGui):
         if not inputGui:
             self.button_Repeat.setChecked(not self.button_Repeat.isChecked())
 
         retoOLED.repeatOled()
-        time.sleep(1)
-        self.returnMonitor()
+        self.timerOled.start(1000)
         
     def rewindPressed(self):
         self.offset = 0
@@ -191,8 +188,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.isPaused = False
         self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
         self.changeInformation(albumCover, duration)
-        time.sleep(1)
-        self.returnMonitor()
+        self.timerOled.start(1000)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
