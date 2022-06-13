@@ -39,12 +39,12 @@ border: 2px solid #555;
 border-radius: 20px;
 border-style: outset;
 	
-	border-image: url(:/newPrefix/Button_Rewind_OFF.jpg);
+	border-image: url(:/newPrefix/Button_Rewind_OFF.png);
 padding: 5px;
 }
 
 QPushButton:hover {
-border-image: url(:/newPrefix/Button_Rewind_ON.jpg);
+border-image: url(:/newPrefix/Button_Rewind_ON.png);
 }
 </string>
     </property>
@@ -66,25 +66,23 @@ border-image: url(:/newPrefix/Button_Rewind_ON.jpg);
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-color: #333;
-border: 2px solid #555;
-border-radius: 20px;
-border-style: outset;
-	border-image: url(:/newPrefix/Button_Play_OFF.jpg);
-padding: 5px;
+	color: #333;
+	border: 2px solid #555;
+	border-radius: 20px;
+	border-style: outset;
+	border-image: url(:/newPrefix/Button_Play_OFF.png);
+	padding 5px;		
 }
 QPushButton::checked{
-border-image: url(:/newPrefix/Button_Pause_OFF.jpg);
-}
+	border-image: url(:/newPrefix/Button_Pause_OFF.png);}
 
 QPushButton:hover:!pressed:!checked {
-border-image: url(:/newPrefix/Button_Play_ON.jpg);
+	border-image: url(:/newPrefix/Button_Play_ON.png);
 }
 
 QPushButton:hover:!pressed:checked {
-border-image: url(:/newPrefix/Button_Pause_ON.jpg);
+	border-image: url(:/newPrefix/Button_Pause_ON.png);
 }
-
 </string>
     </property>
     <property name="text">
@@ -109,12 +107,12 @@ color: #333;
 border: 2px solid #555;
 border-radius: 20px;
 border-style: outset;
-	border-image: url(:/newPrefix/Button_FF_OFF.jpg);
+	border-image: url(:/newPrefix/Button_FF_OFF.png);
 padding: 5px;
 }
 
 QPushButton:hover {
-border-image: url(:/newPrefix/Button_FF_ON.jpg);
+border-image: url(:/newPrefix/Button_FF_ON.png);
 }
 </string>
     </property>
@@ -140,16 +138,16 @@ color: #333;
 border: 2px solid #555;
 border-radius: 20px;
 border-style: outset;
-	border-image: url(:/newPrefix/Button_Random_OFF.jpg);
+	border-image: url(:/newPrefix/Button_Random_OFF.png);
 padding: 5px;
 }
 
 QPushButton::checked{
-border-image: url(:/newPrefix/Button_Random_ON.jpg);
+border-image: url(:/newPrefix/Button_Random_ON.png);
 }
 
 QPushButton:hover:!pressed:!checked {
-border-image: url(:/newPrefix/Button_Random_ON.jpg);
+border-image: url(:/newPrefix/Button_Random_ON.png);
 }
 
 </string>
@@ -183,9 +181,10 @@ border-image: url(:/newPrefix/Button_Random_ON.jpg);
 QSlider::handle:horizontal{
 	background: white;
 	border: 1px solid black;
-	width: 10px;
+	width: 20px;
+	height: 20px;
 	margin: -4px 0;
-	border-radius: 9px
+	border-radius: 4px
 }
 
 QSlider::add-page:horizontal{
@@ -194,6 +193,9 @@ QSlider::add-page:horizontal{
 }</string>
     </property>
     <property name="singleStep">
+     <number>0</number>
+    </property>
+    <property name="pageStep">
      <number>0</number>
     </property>
     <property name="orientation">
@@ -205,8 +207,8 @@ QSlider::add-page:horizontal{
      <rect>
       <x>160</x>
       <y>460</y>
-      <width>31</width>
-      <height>16</height>
+      <width>41</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="cursor">
@@ -240,16 +242,16 @@ color: #333;
 border: 2px solid #555;
 border-radius: 20px;
 border-style: outset;
-	border-image: url(:/newPrefix/Button_Repeat_OFF.jpg);
+	border-image: url(:/newPrefix/Button_Repeat_OFF.png);
 padding: 5px;
 }
 
 QPushButton:hover {
-border-image: url(:/newPrefix/Button_Repeat_ON.jpg);
+border-image: url(:/newPrefix/Button_Repeat_ON.png);
 }
 
 QPushButton:checked {
-border-image: url(:/newPrefix/Button_Repeat_ON.jpg);
+border-image: url(:/newPrefix/Button_Repeat_ON.png);
 }</string>
     </property>
     <property name="text">
@@ -282,7 +284,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>600</x>
       <y>20</y>
       <width>261</width>
       <height>261</height>
@@ -301,7 +303,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>610</x>
       <y>290</y>
       <width>261</width>
       <height>31</height>
@@ -326,7 +328,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>610</x>
       <y>320</y>
       <width>261</width>
       <height>31</height>
@@ -366,8 +368,8 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>760</x>
       <y>460</y>
-      <width>31</width>
-      <height>16</height>
+      <width>41</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="cursor">
@@ -386,6 +388,109 @@ color: rgb(255, 255, 255);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QSlider" name="slider_Volume">
+    <property name="geometry">
+     <rect>
+      <x>895</x>
+      <y>60</y>
+      <width>16</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:vertical{
+	border: 1px solid black;
+	width: 5px;
+	background: white;
+}
+
+QSlider::handle:vertical{
+	background: white;
+	border: 1px solid black;
+	height: 20px;
+	width: 20px;
+	margin: 0 -4px ;
+	border-radius: 4px
+}
+
+QSlider::add-page:vertical{
+	background: rgb(119, 221, 119);
+	border: 1px solid black;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>99</number>
+    </property>
+    <property name="singleStep">
+     <number>0</number>
+    </property>
+    <property name="pageStep">
+     <number>8</number>
+    </property>
+    <property name="sliderPosition">
+     <number>99</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+    <property name="invertedControls">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Volume">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>260</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-image: url(:/newPrefix/volume__1.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Volume_2">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>270</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label_4</zorder>
    <zorder>button_Rewind</zorder>
    <zorder>button_Play</zorder>
@@ -399,6 +504,9 @@ color: rgb(255, 255, 255);</string>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>label_SoundEnd</zorder>
+   <zorder>slider_Volume</zorder>
+   <zorder>label_Volume</zorder>
+   <zorder>label_Volume_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

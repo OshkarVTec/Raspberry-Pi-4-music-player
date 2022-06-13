@@ -5,14 +5,11 @@ import eyed3
 import random
 import Functions
 import createSongs
-#import retoOLED
 import time
-#import retoUART
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QListWidget
 from Spotify import *
-
 
 class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -36,9 +33,8 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Random.clicked.connect(lambda : self.randomPressed(True))
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(True))
         self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
-        #self.slider_Volume.valueChanged.connect(lambda : self.changeVolume())
+        self.slider_Volume.valueChanged.connect(lambda : self.changeVolume())
         self.listWidget.itemDoubleClicked.connect(self.songChoose)
-
         self.listWidget.clear()
         for x in range(len(self.songs)):
             audiofile = eyed3.load(self.songs[x])
@@ -48,7 +44,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def loop(self):
         if Functions.checkMusicEnd():
             if self.button_Repeat.isChecked():
-                self.playPressed()
+                self.playPressed(True)
             else:
                 self.nextPressed()
         if not self.slider_MusicDuration.isSliderDown():
@@ -56,8 +52,20 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def changeVolume(self):
         Functions.changeVolume(self.slider_Volume.value())
-    # def returnMonitor(self):
-    #     retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
+        if (self.slider_Volume.value() == 0):
+            self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__4.png);")
+        else:
+            if(self.slider_Volume.value()>0 and self.slider_Volume.value()<=33):
+               self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__3.png);")
+            if(self.slider_Volume.value()>33 and self.slider_Volume.value()<=66):
+                self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__2.png);")
+            if(self.slider_Volume.value()>66 and self.slider_Volume.value()<=100):
+                self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__1.png);")
+
     def songChoose(self):
         number = self.listWidget.currentRow()
         self.setSong(number)
@@ -108,41 +116,27 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             if self.currentSong >= len(self.songs):
                 self.currentSong = 0
         self.button_Play.setChecked(True)
-        #retoOLED.nextOled()
         self.isPaused = False
         self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
         self.changeInformation(albumCover, duration)
-        #time.sleep(1)
-        #self.returnMonitor()
 
     def playPressed(self, inputGui):
         if  not inputGui:
             self.button_Play.setChecked(not self.button_Play.isChecked())
 
         if self.button_Play.isChecked() == True:
-            #retoOLED.playOled()
             self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
             self.changeInformation(albumCover, duration)
         else:
-            #retoOLED.pauseOled()
             self.isPaused = Functions.pause(self.isPaused)
-        #time.sleep(1)
-        #self.returnMonitor()
         
     def randomPressed(self, inputGui):
         if not inputGui:
             self.button_Random.setChecked(not self.button_Random.isChecked())
-        #retoOLED.randomOled()
-        #time.sleep(1)
-        #self.returnMonitor()
 
     def repeatPressed(self, inputGui):
         if not inputGui:
             self.button_Repeat.setChecked(not self.button_Repeat.isChecked())
-
-        #retoOLED.repeatOled()
-        #time.sleep(1)
-        #self.returnMonitor()
         
     def rewindPressed(self):
         self.offset = 0
@@ -156,14 +150,11 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
                 if self.currentSong < 0:
                     self.currentSong = len(self.songs) - 1
             self.button_Play.setChecked(True)
-            #retoOLED.previousOled()
         else:
             self.currentSong = self.currentSong
         self.isPaused = False
         self.isPaused, self.songTitle, self.songArtist, self.songAlbum, albumCover, duration = Functions.play(self.songs[self.currentSong], self.isPaused, self.images)
         self.changeInformation(albumCover, duration)
-        ##time.sleep(1)
-        #self.returnMonitor()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

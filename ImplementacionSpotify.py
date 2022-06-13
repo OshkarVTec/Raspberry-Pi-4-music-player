@@ -37,6 +37,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Random.clicked.connect(lambda : self.randomPressed(True))
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(True))
         self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
+        self.slider_Volume.valueChanged.connect(lambda : self.changeVolume())
         self.listWidget.itemDoubleClicked.connect(self.songChoose)
 
         self.listWidget.clear()
@@ -59,6 +60,22 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             self.keyPadLetters(dataUart)
         else:
             self.keyPadNumbers(dataUart)
+
+    def changeVolume(self):
+        Functions.changeVolume(self.slider_Volume.value())
+        if (self.slider_Volume.value() == 0):
+            self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__4.png);")
+        else:
+            if(self.slider_Volume.value()>0 and self.slider_Volume.value()<=33):
+               self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__3.png);")
+            if(self.slider_Volume.value()>33 and self.slider_Volume.value()<=66):
+                self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__2.png);")
+            if(self.slider_Volume.value()>66 and self.slider_Volume.value()<=100):
+                self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+                "border-image: url(:/newPrefix/volume__1.png);")
 
     def keyPadLetters(self, data):
         if data == 'A':

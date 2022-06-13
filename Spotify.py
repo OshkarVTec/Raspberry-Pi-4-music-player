@@ -28,12 +28,12 @@ class Ui_MainWindow(object):
 "border-radius: 20px;\n"
 "border-style: outset;\n"
 "    \n"
-"    border-image: url(:/newPrefix/Button_Rewind_OFF.jpg);\n"
+"    border-image: url(:/newPrefix/Button_Rewind_OFF.png);\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"border-image: url(:/newPrefix/Button_Rewind_ON.jpg);\n"
+"border-image: url(:/newPrefix/Button_Rewind_ON.png);\n"
 "}\n"
 "")
         self.button_Rewind.setText("")
@@ -42,25 +42,23 @@ class Ui_MainWindow(object):
         self.button_Play.setGeometry(QtCore.QRect(440, 380, 61, 61))
         self.button_Play.setAutoFillBackground(False)
         self.button_Play.setStyleSheet("QPushButton {\n"
-"color: #333;\n"
-"border: 2px solid #555;\n"
-"border-radius: 20px;\n"
-"border-style: outset;\n"
-"    border-image: url(:/newPrefix/Button_Play_OFF.jpg);\n"
-"padding: 5px;\n"
+"    color: #333;\n"
+"    border: 2px solid #555;\n"
+"    border-radius: 20px;\n"
+"    border-style: outset;\n"
+"    border-image: url(:/newPrefix/Button_Play_OFF.png);\n"
+"    padding 5px;        \n"
 "}\n"
 "QPushButton::checked{\n"
-"border-image: url(:/newPrefix/Button_Pause_OFF.jpg);\n"
-"}\n"
+"    border-image: url(:/newPrefix/Button_Pause_OFF.png);}\n"
 "\n"
 "QPushButton:hover:!pressed:!checked {\n"
-"border-image: url(:/newPrefix/Button_Play_ON.jpg);\n"
+"    border-image: url(:/newPrefix/Button_Play_ON.png);\n"
 "}\n"
 "\n"
 "QPushButton:hover:!pressed:checked {\n"
-"border-image: url(:/newPrefix/Button_Pause_ON.jpg);\n"
+"    border-image: url(:/newPrefix/Button_Pause_ON.png);\n"
 "}\n"
-"\n"
 "")
         self.button_Play.setText("")
         self.button_Play.setCheckable(True)
@@ -72,12 +70,12 @@ class Ui_MainWindow(object):
 "border: 2px solid #555;\n"
 "border-radius: 20px;\n"
 "border-style: outset;\n"
-"    border-image: url(:/newPrefix/Button_FF_OFF.jpg);\n"
+"    border-image: url(:/newPrefix/Button_FF_OFF.png);\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"border-image: url(:/newPrefix/Button_FF_ON.jpg);\n"
+"border-image: url(:/newPrefix/Button_FF_ON.png);\n"
 "}\n"
 "")
         self.button_FF.setText("")
@@ -90,16 +88,16 @@ class Ui_MainWindow(object):
 "border: 2px solid #555;\n"
 "border-radius: 20px;\n"
 "border-style: outset;\n"
-"    border-image: url(:/newPrefix/Button_Random_OFF.jpg);\n"
+"    border-image: url(:/newPrefix/Button_Random_OFF.png);\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
 "QPushButton::checked{\n"
-"border-image: url(:/newPrefix/Button_Random_ON.jpg);\n"
+"border-image: url(:/newPrefix/Button_Random_ON.png);\n"
 "}\n"
 "\n"
 "QPushButton:hover:!pressed:!checked {\n"
-"border-image: url(:/newPrefix/Button_Random_ON.jpg);\n"
+"border-image: url(:/newPrefix/Button_Random_ON.png);\n"
 "}\n"
 "\n"
 "")
@@ -118,9 +116,10 @@ class Ui_MainWindow(object):
 "QSlider::handle:horizontal{\n"
 "    background: white;\n"
 "    border: 1px solid black;\n"
-"    width: 10px;\n"
+"    width: 20px;\n"
+"    height: 20px;\n"
 "    margin: -4px 0;\n"
-"    border-radius: 9px\n"
+"    border-radius: 4px\n"
 "}\n"
 "\n"
 "QSlider::add-page:horizontal{\n"
@@ -128,10 +127,11 @@ class Ui_MainWindow(object):
 "    border: 1px solid black;\n"
 "}")
         self.slider_MusicDuration.setSingleStep(0)
+        self.slider_MusicDuration.setPageStep(0)
         self.slider_MusicDuration.setOrientation(QtCore.Qt.Horizontal)
         self.slider_MusicDuration.setObjectName("slider_MusicDuration")
         self.label_SoundStart = QtWidgets.QLabel(self.centralwidget)
-        self.label_SoundStart.setGeometry(QtCore.QRect(160, 460, 31, 16))
+        self.label_SoundStart.setGeometry(QtCore.QRect(160, 460, 41, 20))
         self.label_SoundStart.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.label_SoundStart.setStyleSheet("color: rgb(255, 255, 255);")
         self.label_SoundStart.setTextFormat(QtCore.Qt.RichText)
@@ -144,16 +144,16 @@ class Ui_MainWindow(object):
 "border: 2px solid #555;\n"
 "border-radius: 20px;\n"
 "border-style: outset;\n"
-"    border-image: url(:/newPrefix/Button_Repeat_OFF.jpg);\n"
+"    border-image: url(:/newPrefix/Button_Repeat_OFF.png);\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"border-image: url(:/newPrefix/Button_Repeat_ON.jpg);\n"
+"border-image: url(:/newPrefix/Button_Repeat_ON.png);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
-"border-image: url(:/newPrefix/Button_Repeat_ON.jpg);\n"
+"border-image: url(:/newPrefix/Button_Repeat_ON.png);\n"
 "}")
         self.button_Repeat.setText("")
         self.button_Repeat.setCheckable(True)
@@ -168,13 +168,13 @@ class Ui_MainWindow(object):
 "color: rgb(255, 255, 255);")
         self.listWidget.setObjectName("listWidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(610, 20, 261, 261))
+        self.label.setGeometry(QtCore.QRect(600, 20, 261, 261))
         self.label.setAutoFillBackground(False)
         self.label.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(630, 290, 261, 31))
+        self.label_2.setGeometry(QtCore.QRect(610, 290, 261, 31))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(12)
@@ -185,7 +185,7 @@ class Ui_MainWindow(object):
         self.label_2.setStyleSheet("color: rgb(255, 255, 255);")
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(630, 320, 261, 31))
+        self.label_3.setGeometry(QtCore.QRect(610, 320, 261, 31))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(10)
@@ -197,12 +197,62 @@ class Ui_MainWindow(object):
         self.label_4.setStyleSheet("background-color: rgb(66,66,66);")
         self.label_4.setObjectName("label_4")
         self.label_SoundEnd = QtWidgets.QLabel(self.centralwidget)
-        self.label_SoundEnd.setGeometry(QtCore.QRect(760, 460, 31, 16))
+        self.label_SoundEnd.setGeometry(QtCore.QRect(760, 460, 41, 21))
         self.label_SoundEnd.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.label_SoundEnd.setStyleSheet("color: rgb(255, 255, 255);")
         self.label_SoundEnd.setTextFormat(QtCore.Qt.RichText)
         self.label_SoundEnd.setAlignment(QtCore.Qt.AlignCenter)
         self.label_SoundEnd.setObjectName("label_SoundEnd")
+        self.slider_Volume = QtWidgets.QSlider(self.centralwidget)
+        self.slider_Volume.setGeometry(QtCore.QRect(895, 60, 16, 201))
+        self.slider_Volume.setAutoFillBackground(False)
+        self.slider_Volume.setStyleSheet("QSlider::groove:vertical{\n"
+"    border: 1px solid black;\n"
+"    width: 5px;\n"
+"    background: white;\n"
+"}\n"
+"\n"
+"QSlider::handle:vertical{\n"
+"    background: white;\n"
+"    border: 1px solid black;\n"
+"    height: 20px;\n"
+"    width: 20px;\n"
+"    margin: 0 -4px ;\n"
+"    border-radius: 4px\n"
+"}\n"
+"\n"
+"QSlider::add-page:vertical{\n"
+"    background: rgb(119, 221, 119);\n"
+"    border: 1px solid black;\n"
+"}")
+        self.slider_Volume.setMinimum(0)
+        self.slider_Volume.setMaximum(99)
+        self.slider_Volume.setSingleStep(0)
+        self.slider_Volume.setPageStep(8)
+        self.slider_Volume.setSliderPosition(100)
+        self.slider_Volume.setOrientation(QtCore.Qt.Vertical)
+        self.slider_Volume.setInvertedAppearance(False)
+        self.slider_Volume.setInvertedControls(True)
+        self.slider_Volume.setObjectName("slider_Volume")
+        self.label_Volume = QtWidgets.QLabel(self.centralwidget)
+        self.label_Volume.setGeometry(QtCore.QRect(890, 260, 31, 31))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(10)
+        self.label_Volume.setFont(font)
+        self.label_Volume.setStyleSheet("color: rgb(255, 255, 255);\n"
+"border-image: url(:/newPrefix/volume__1.png);")
+        self.label_Volume.setText("")
+        self.label_Volume.setObjectName("label_Volume")
+        self.label_Volume_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_Volume_2.setGeometry(QtCore.QRect(870, 270, 21, 21))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(10)
+        self.label_Volume_2.setFont(font)
+        self.label_Volume_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_Volume_2.setText("")
+        self.label_Volume_2.setObjectName("label_Volume_2")
         self.label_4.raise_()
         self.button_Rewind.raise_()
         self.button_Play.raise_()
@@ -216,6 +266,9 @@ class Ui_MainWindow(object):
         self.label_2.raise_()
         self.label_3.raise_()
         self.label_SoundEnd.raise_()
+        self.slider_Volume.raise_()
+        self.label_Volume.raise_()
+        self.label_Volume_2.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 948, 26))

@@ -1,19 +1,33 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>Button_Play_ON.png</file>
+    <file>Button_FF_ON.png</file>
+    <file>Button_FF_OFF.png</file>
+    <file>Button_Pause_OFF.png</file>
+    <file>Un Verano Sin Ti.jpg</file>
+    <file>Come Home The Kids Miss You.jpg</file>
+    <file>Dawn FM.jpg</file>
+    <file>Discovery.jpg</file>
+    <file>True.jpg</file>
+    <file>Button_Pause_ON.png</file>
+    <file>Button_Random_OFF.png</file>
+    <file>Button_Play_OFF.png</file>
+    <file>Button_Random_ON.png</file>
+    <file>Button_Repeat_OFF.png</file>
+    <file>Button_Repeat_ON.png</file>
+    <file>Button_Rewind_OFF.png</file>
+    <file>Button_Rewind_ON.png</file>
     <file>So Far So Good.jpg</file>
     <file>Doo-Wops &amp; Hooligans.jpg</file>
-    <file>Button_Random_OFF.jpg</file>
-    <file>Button_Pause_OFF.jpg</file>
-    <file>Button_Pause_ON.jpg</file>
-    <file>Button_Random_ON.jpg</file>
-    <file>Button_Repeat_OFF.jpg</file>
-    <file>Button_Repeat_ON.jpg</file>
-    <file>Button_Repeat_OFF.jpg</file>
-    <file>Button_Play_OFF.jpg</file>
-    <file>Button_Play_ON.jpg</file>
-    <file>Button_Rewind_OFF.jpg</file>
-    <file>Button_FF_OFF.jpg</file>
-    <file>Button_FF_ON.jpg</file>
-    <file>Button_Rewind_ON.jpg</file>
+    <file>Certified Lover Boy.jpg</file>
+    <file>Come Home The Kids Miss You.jpg</file>
+    <file>Dawn FM.jpg</file>
+    <file>Discovery.jpg</file>
+    <file>True.jpg</file>
+    <file>Un Verano Sin Ti.jpg</file>
+    <file>volume__1.png</file>
+    <file>volume__4.png</file>
+    <file>volume__2.png</file>
+    <file>volume__3.png</file>
   </qresource>
 </RCC>
