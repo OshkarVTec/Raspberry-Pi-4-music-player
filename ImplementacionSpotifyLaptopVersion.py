@@ -55,7 +55,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
             self.updateSlider()
 
     def changeVolume(self):
-        Functions.changeVolume(self.slider_Volume.value())d
+        Functions.changeVolume(self.slider_Volume.value())
     # def returnMonitor(self):
     #     retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
     def songChoose(self):
