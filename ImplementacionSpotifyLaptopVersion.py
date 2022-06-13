@@ -36,6 +36,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.button_Random.clicked.connect(lambda : self.randomPressed(True))
         self.button_Repeat.clicked.connect(lambda : self.repeatPressed(True))
         self.slider_MusicDuration.sliderReleased.connect(lambda : self.playTimeChanged())
+        self.slider_Volume.valueChanged.connect(lambda : self.changeVolume())
         self.listWidget.itemDoubleClicked.connect(self.songChoose)
 
         self.listWidget.clear()
@@ -53,7 +54,8 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         if not self.slider_MusicDuration.isSliderDown():
             self.updateSlider()
 
-
+    def changeVolume(self):
+        Functions.changeVolume(self.slider_Volume.value())d
     # def returnMonitor(self):
     #     retoOLED.showInfo(self.currentSong, self.songTitle, self.songArtist, self.songAlbum)
     def songChoose(self):

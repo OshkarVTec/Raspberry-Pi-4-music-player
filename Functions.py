@@ -48,6 +48,8 @@ def getPlayTime(isPaused):
       return player.get_time()
    return 0
 
+def changeVolume(volume):
+   player.audio_set_volume(volume)
 
 
 
