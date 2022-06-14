@@ -24,7 +24,6 @@ def play(songPath, isPaused, images):
       player.set_media(media)
       player.play()
    isPaused = False
-   
    return isPaused, songTitle, songArtist, songAlbum, albumCover, duration
 
 def pause(isPaused):

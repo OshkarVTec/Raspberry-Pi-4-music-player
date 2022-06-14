@@ -1,5 +1,6 @@
 #Diego García, Oskar Villa
 #June 2022
+from socketserver import ThreadingUnixStreamServer
 import eyed3
 import random
 import Functions
@@ -49,7 +50,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
     def loop(self):
         if Functions.checkMusicEnd():
             if self.button_Repeat.isChecked():
-                self.playPressed()
+                self.playPressed(True)
             else:
                 self.nextPressed()
         if not self.slider_MusicDuration.isSliderDown():
