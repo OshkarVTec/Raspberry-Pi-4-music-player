@@ -94,7 +94,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         number = int(data)
         retoOLED.showNumber(number)
         time.sleep(1)
-        newData = Functions.readUart()
+        newData = retoUART.readUart()
         if newData.isnumeric():
             number = int(data + newData)
             retoOLED.showNumber(number)
@@ -145,6 +145,7 @@ class Ui_Dialog(QtWidgets.QMainWindow,Ui_MainWindow):
         self.listWidget.takeItem(self.currentSong)
         i.setForeground(color)
         self.listWidget.insertItem(self.currentSong, i)
+        self.timerOled.start(1000)
 
     def nextPressed(self):
         self.changeList(QtGui.QColor(255,255,255))
