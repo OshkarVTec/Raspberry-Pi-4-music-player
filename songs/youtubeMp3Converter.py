@@ -3,7 +3,7 @@ import eyed3
 import youtube_dl
 
 songs = [
-'https://www.youtube.com/watch?v=2NiyrtYegso&list=PLm87MSayQYPoUsizXajFTBtx05kYZXXYR'
+'https://www.youtube.com/watch?v=bpXztWUPPFQ'
 ] #Links de la playlist oficial
 
 ydl_opts = {

@@ -1,11 +1,9 @@
 #Diego García, Oskar Villa
 #June 2022
-import numbers
 import eyed3
 import random
 import Functions
 import createSongs
-import time
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QListWidget
